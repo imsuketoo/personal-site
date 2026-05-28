@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ziyuan Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --grid-module: calc((100vw - 20px) / 24);
+  --kk-blue: #001791;
+  --dark: #1D1D1F;
+  --white: #fff;
+  --gray: #6E6E73;
+  --light-gray: #F5F5F7;
+  --border: #E0E0E0;
+  --font: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--kk-blue);
+  background: var(--white);
+  padding: 0;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Kiko 式点阵背景 ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,23,145,0.30) 1px, transparent 0px);
+  background-size: 70px 70px;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* ── Header ── */
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: transparent;
+}
+
+header .logo a {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+
+header.scrolled .logo a { color: var(--kk-blue); text-shadow: none; }
+
+header .nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+header .nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.3s;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+
+header .nav-links a:hover { color: #fff; }
+
+header.scrolled .nav-links a { color: var(--gray); text-shadow: none; }
+header.scrolled .nav-links a:hover { color: var(--kk-blue); }
+
+.lang-switch {
+  display: flex;
+  gap: 8px;
+}
+
+.lang-switch a {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.3s;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+
+.lang-switch a:hover,
+.lang-switch a.active { color: #fff; }
+
+header.scrolled .lang-switch a { color: var(--gray); text-shadow: none; }
+header.scrolled .lang-switch a:hover,
+header.scrolled .lang-switch a.active { color: var(--kk-blue); }
+
+/* ── Main wrapper ── */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Sections ── */
+section {
+  padding: 80px 0 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-inner {
+  width: 80vw;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--kk-blue);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.section-desc {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.5;
+  max-width: 540px;
+  margin-bottom: 32px;
+}
+
+/* ── About ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.about-item {
+  border-top: 1px solid var(--kk-blue);
+  padding-top: 8px;
+}
+
+.about-item h3 {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--kk-blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  opacity: 0.6;
+}
+
+.about-item p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-top: 1px solid var(--kk-blue);
+  border-bottom: 1px solid var(--kk-blue);
+}
+
+.tag {
+  font-size: 13px;
+  padding: 6px 16px 6px 0;
+  color: var(--gray);
+  letter-spacing: 0.2px;
+  border-right: 1px solid var(--border);
+  padding-right: 16px;
+  margin-right: 16px;
+}
+
+.tag:last-child { border-right: none; }
+
+/* ── Full-bleed teaser (Kiko 首页式全屏图片) ── */
+.teaser {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-top: -40px;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  min-height: 500px;
+  background: var(--light-gray);
+  margin-bottom: 0;
+}
+
+.teaser img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.teaser .teaser-label {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(0,23,145,0.7);
+  padding: 6px 14px;
+}
+
+/* ── Product 三角陈列网格 (Kiko PLP 风格) ── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.product-item {
+  background: var(--white);
+  line-height: 0;
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Magazine Life ── */
+.magazine-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.mag-spread {
+  position: relative;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.mag-spread .mag-image {
+  line-height: 0;
+}
+
+.mag-spread .mag-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 60vh;
+  object-fit: cover;
+}
+
+.mag-spread .mag-caption {
+  padding: 10px 14px 14px;
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--gray);
+  letter-spacing: 0.3px;
+  border-top: 1px solid var(--border);
+}
+
+.mag-spread .mag-date {
+  font-weight: 500;
+  color: var(--kk-blue);
+}
+
+.mag-entry {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+
+.mag-entry:first-of-type {
+  border-top: none;
+}
+
+.mag-entry-image {
+  line-height: 0;
+  overflow: hidden;
+}
+
+.mag-entry-image img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+
+.mag-entry-text {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+.mag-entry-text .mag-date {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--kk-blue);
+  letter-spacing: 0.5px;
+}
+
+.mag-entry-text p {
+  font-size: 13px;
+  color: var(--dark);
+  line-height: 1.4;
+}
+
+/* ── Experience Section ── */
+/* ── Experience Section ── */
+/* 双栏跨页：毕业秀 65% / 文化祭 35% */
+.exp-spread {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 40px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.exp-spread-item {
+  flex: 1;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-spread-item:first-child {
+  flex: 1.8;
+}
+
+.exp-spread-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.exp-spread-body {
+  padding: 14px 14px 18px;
+  border-top: 1px solid var(--kk-blue);
+}
+
+.exp-spread-body .l {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--kk-blue);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 3px;
+}
+
+.exp-spread-body h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--kk-blue);
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  margin-bottom: 3px;
+}
+
+.exp-spread-body p {
+  font-size: 11px;
+  color: var(--gray);
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+}
+
+/* 模特三图 strip */
+.exp-models {
+  margin-bottom: 36px;
+}
+
+.exp-models-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--kk-blue);
+}
+
+.exp-models-head-en {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--kk-blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.exp-models-head-ja {
+  font-size: 13px;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .exp-models-head { flex-direction: column; gap: 4px; }
+  .exp-models-head-en { font-size: 17px; }
+}
+
+/* 主体：大图左 + 双图右叠 */
+.exp-models-duo {
+  display: flex;
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.exp-models-duo .m-primary {
+  flex: 1.4;
+  background: var(--white);
+}
+
+.exp-models-duo .m-primary img {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.exp-models-duo .m-primary .cap {
+  padding: 10px 14px 14px;
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+  border-top: 1px solid var(--border);
+}
+
+.exp-models-duo .m-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--border);
+}
+
+.exp-models-duo .m-side .m {
+  flex: 1;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-models-duo .m-side .m img {
+  width: 100%;
+  height: 0;
+  min-height: 180px;
+  object-fit: cover;
+  display: block;
+  flex: 1;
+}
+
+.exp-models-duo .m-side .m .cap {
+  padding: 8px 12px 12px;
+  font-size: 10px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .exp-models-duo { flex-direction: column; }
+  .exp-models-duo .m-primary img { min-height: 240px; }
+}
+
+/* 实习 */
+.exp-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 0;
+  border-top: 2px solid var(--kk-blue);
+}
+
+.exp-foot-en {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--kk-blue);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.exp-foot-desc {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--kk-blue);
+  letter-spacing: 0.3px;
+  text-align: right;
+  max-width: 65%;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.exp-foot-desc span {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--gray);
+  margin-top: 2px;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 768px) {
+  .exp-spread { flex-direction: column; }
+}
+
+/* ── Work Grid ── */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--kk-blue);
+  border-left: 1px solid var(--kk-blue);
+}
+
+.work-card {
+  border-right: 1px solid var(--kk-blue);
+  border-bottom: 1px solid var(--kk-blue);
+  padding: 28px 24px;
+  text-decoration: none;
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 80px;
+  transition: background 0.2s;
+}
+
+.work-card:hover { background: var(--light-gray); }
+
+.work-card-wide {
+  grid-column: 1 / -1;
+}
+
+.work-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--kk-blue);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.work-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--kk-blue);
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+}
+
+.work-card p {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.4;
+}
+
+.work-card .status {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gray);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  align-self: flex-start;
+}
+
+/* ── Statement ── */
+.statement-block {
+  padding: 28px 24px;
+  background: var(--light-gray);
+  margin-top: 16px;
+}
+
+.statement-block p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--dark);
+  max-width: 720px;
+}
+
+.statement-block .highlight {
+  color: var(--kk-blue);
+  font-weight: 600;
+}
+
+/* ── Contact ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--kk-blue);
+  text-decoration: none;
+  padding: 18px 16px;
+  background: var(--white);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+
+.contact-link:hover { background: var(--light-gray); }
+
+.contact-link .arrow { color: var(--kk-blue); opacity: 0.4; font-size: 11px; }
+
+/* ── Footer ── */
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 20px 0;
+}
+
+.footer-inner {
+  width: 80vw; max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--gray);
+  letter-spacing: 0.3px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  font-size: 12px;
+  color: var(--gray);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  transition: color 0.15s;
+}
+
+.footer-links a:hover { color: var(--kk-blue); }
+
+/* ── Animations ── */
+/* ── Image hover lift ── */
+.product-item img,
+.exp-spread-item img,
+.exp-models-duo img,
+.pat-cell,
+.work-card {
+  transition: transform 0.4s ease;
+}
+
+.product-item:hover img,
+.exp-spread-item:hover img,
+.exp-models-duo .m-primary:hover img,
+.exp-models-duo .m-side .m:hover img,
+.pat-cell:hover,
+.work-card:hover {
+  transform: scale(1.02);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.03, 0, 1), transform 0.7s cubic-bezier(0.22, 0.03, 0, 1);
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* stagger grid children */
+.fade-stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-stagger.in-view > *:nth-child(1) { transition-delay: 0.0s; }
+.fade-stagger.in-view > *:nth-child(2) { transition-delay: 0.08s; }
+.fade-stagger.in-view > *:nth-child(3) { transition-delay: 0.16s; }
+.fade-stagger.in-view > *:nth-child(4) { transition-delay: 0.24s; }
+.fade-stagger.in-view > * { opacity: 1; transform: translateY(0); }
+
+
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  header { padding: 0 12px; }
+  header .nav-links { gap: 14px; }
+  header .nav-links a { font-size: 12px; }
+  .lang-switch a { font-size: 10px; }
+  section { padding: 40px 0 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 0; }
+  .product-grid { grid-template-columns: 1fr 1fr; }
+  .work-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+  .mag-entry { grid-template-columns: 90px 1fr; }
+  .exp-spread-image img { min-height: 200px; max-height: 300px; }
+  .exp-spread-text { max-width: 90%; padding: 12px 14px; }
+  .ex-right { width: 88%; }
+  .exp-title { font-size: 14px; }
+  .exp-line { flex-direction: column; gap: 6px; }
+  .exp-line-label { width: auto; }
+  .mag-entry-image img { height: 70px; }
+  .teaser { height: 60vh; }
+  .tags { flex-wrap: wrap; }
+  .tag { border-right: none; margin-right: 0; padding-right: 0; }
+  .tag:not(:last-child)::after { content: '/'; margin-left: 8px; color: var(--gray); }
+}
+
+/* ── Pattern Photo ── */
+.pat-photo {
+  width: 80vw;
+  max-width: 1100px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 40px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.pat-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+
+.pat-photo-cap {
+  padding: 12px 16px;
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  text-align: center;
+  background: var(--light-gray);
+}
+
+@media (max-width: 768px) {
+  .pat-photo { margin-bottom: 30px; }
+  .pat-photo-cap { font-size: 10px; padding: 10px 14px; }
+}
+
+@media (max-width: 480px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .teaser { height: 50vh; }
+  header { padding: 0 10px; }
+  header .nav-links { gap: 10px; }
+  header .nav-links a { font-size: 11px; }
+  .section-title { font-size: 19px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ Header ═══ -->
+<header>
+  <div class="logo"><a href="/">Ziyuan Wang</a></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#pattern">Pattern</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#statement">Statement</a></li>
+    <li><a href="#life">Life</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="lang-switch">
+    <a href="personal-site-ja.html" class="active">中</a>
+    <a href="personal-site-en.html">EN</a>
+    <a href="personal-site-ja.html" class="active">日</a>
+    <a href="personal-site-hant.html">繁</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══ Hero Teaser ═══ -->
+<div class="teaser">
+  <img src="images/products/pants.jpg" alt="服装作品">
+  <div class="teaser-label">Collection · 2026</div>
+</div>
+
+<!-- ═══ About ═══ -->
+<section id="about">
+  <div class="section-inner fade-in">
+    <div class="section-label">Profile</div>
+    <h2 class="section-title">Ziyuan Wang</h2>
+    <div class="about-grid">
+      <div class="about-item">
+        <h3>基本情報</h3>
+        <p>2003 · 中国大連<br>中国語（母語） · 日本語 N2 · 英語（ビジネス日常会話）</p>
+      </div>
+      <div class="about-item">
+        <h3>学歴</h3>
+        <p>鲁迅美术学院 服装与服饰设计（服装製図）<br>日本文化服装学院 工科ファッション高度専門士科<br>双学歴 · 2026 年 6 月毕业</p>
+      </div>
+      <div class="about-item">
+        <h3>専門分野</h3>
+        <p>クロスカルチャーブランド戦略 · Sell to China<br>素材研究とデザイン戦略<br>中日市場間のコンテクスト翻訳</p>
+      </div>
+      <div class="about-item">
+        <h3>キャリアビジョン</h3>
+        <p>以中日跨文化背景切入时尚产业<br>品牌策略 / 买手 / 电商运营専門分野</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Experience ═══ -->
+<section id="experience">
+  <div class="section-inner fade-in">
+
+    <div class="section-label">Experience</div>
+    <h2 class="section-title" style="margin-bottom:28px;">在校 · インターン</h2>
+
+    <!-- 模特 大+小异形排列 -->
+    <div class="exp-models">
+      <div class="exp-models-head">
+        <span class="exp-models-head-en">Model Works</span>
+        <span class="exp-models-head-ja">2026 · モデル撮影</span>
+      </div>
+      <div class="exp-models-duo">
+        <div class="m-primary">
+          <img src="images/life/model01.jpg" alt="束縛 · 覚醒">
+        </div>
+        <div class="m-side fade-stagger">
+          <div class="m">
+            <img src="images/life/model02.jpg" alt="背中 · 解体">
+          </div>
+          <div class="m">
+            <img src="images/life/model03.jpg" alt="共生 · 暗夜">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+<!-- 双栏跨页：毕业秀 + 文化祭 -->
+    <div class="exp-spread">
+      <div class="exp-spread-item">
+        <img src="images/life/sotsugyo.jpg" alt="毕业秀">
+        <div class="exp-spread-body">
+          <div class="l">Show Production · 2026.02–03</div>
+          <h3>卒業制作ショー 統括</h3>
+          <p>全链路策划 · 多语主持 · 节奏管控 · 版权核查</p>
+        </div>
+      </div>
+      <div class="exp-spread-item">
+        <img src="images/life/bunkasai_cropped.jpg" alt="文化祭">
+        <div class="exp-spread-body">
+          <div class="l">Event · 2026</div>
+          <h3>文化服装学院 文化祭</h3>
+          <p>文化生活動統括 · 募集責任者</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 实习 -->
+    <div class="exp-foot">
+      <span class="exp-foot-en">Intern · 2025</span>
+      <span class="exp-foot-desc">海狸先生 · 越境EC部門インターン<span>中国シーフードスナックNo.1ブランド · 店舗運営 · データ分析</span></span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ Work ═══ -->
+<section id="work">
+  <div class="section-inner fade-in">
+    <div class="section-label">Work</div>
+    <h2 class="section-title">デザイン · 戦略 · 製図</h2>
+    <div class="work-grid">
+      <a class="work-card" href="#">
+        <div class="work-card-label">Thesis · 2026</div>
+        <h3>デニム素材の服装デザインへの応用</h3>
+        <p>織物構造からブランド事例まで三層フレームワーク。物性値—設計次元—戦略的アプローチ。</p>
+      </a>
+      <a class="work-card" href="#">
+        <div class="work-card-label">Collection · 2026</div>
+        <h3>Aqua State Of Mind</h3>
+        <p>服飾作品集 · デザインシリーズ</p>
+      </a>
+      <a class="work-card" href="#">
+        <div class="work-card-label">Content · 2026</div>
+        <h3>Sell to China</h3>
+        <p>外国ブランド向け中国市場翻訳戦略</p>
+      </a>
+      <a class="work-card" href="#">
+        <div class="work-card-label">Pattern · 2024–2026</div>
+        <h3>服装製図</h3>
+        <p>原型製図 · シルエット展開 · 工業用パターン · グレーディング · CAD</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Pattern ═══ -->
+<section id="pattern">
+  <div class="section-inner fade-in">
+    <div class="section-label">Pattern</div>
+    <h2 class="section-title">工艺试验</h2>
+
+    <div class="pat-photo">
+      <img src="images/life/IMG_9879.JPG" alt="製図">
+      
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Products ═══ -->
+<section id="products">
+  <div class="section-inner fade-in">
+    <div class="section-label">Products</div>
+    <h2 class="section-title">Aqua State Of Mind</h2>
+
+    <div class="product-grid fade-stagger">
+      <div class="product-item">
+        <img src="images/products/jacket.jpg" alt="蓝色符号印花夹克">
+      </div>
+      <div class="product-item">
+        <img src="images/products/dress.jpg" alt="浅蓝拉链连衣裙">
+      </div>
+      <div class="product-item">
+        <img src="images/products/pants.jpg" alt="棕色明线阔腿裤">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Statement ═══ -->
+<section id="statement">
+  <div class="section-inner fade-in">
+    <div class="section-label">Brand Philosophy</div>
+    <h2 class="section-title">私がブランド</h2>
+ 
+    <div class="statement-block">
+      <p>
+        私がやることは二つ：<span class="highlight">内向け翻訳</span> — 外資ブランドを中国消費者へ；
+        <span class="highlight">外向け翻訳</span> — 中国ブランドを海外市場へ。
+        文化仲介人ではなく、コンテクストデコーダー。
+        一番得意なのは微差を捉えること—デザイン詳細、ブランドトーン、市場コンテクストの微妙な違い。
+        その能力が誰かに見えたとき、それが私の最高の作品。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══ Contact ═══ -->
+<section id="contact">
+  <div class="section-inner fade-in">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">話しましょう</h2>
+    <p class="section-desc">ブランドコラボ · コンテンツ戦略 · デザインプロジェクト · 気軽にご連絡を</p>
+    <div class="contact-grid">
+      <a class="contact-link" href="https://note.com/suketoo" target="_blank">
+        <span class="arrow">→</span> Note
+      </a>
+      <a class="contact-link" href="mailto:imsuketoo@gmail.com">
+        <span class="arrow">→</span> Email
+      </a>
+      <a class="contact-link" href="#">
+        <span class="arrow">→</span> WeChat · suketoo
+      </a>
+      <a class="contact-link" href="https://xhslink.com/m/wEJ2LA2Ez6" target="_blank">
+        <span class="arrow">→</span> Xiaohongshu
+      </a>
+      <a class="contact-link" href="https://www.instagram.com/imsuketoo/" target="_blank">
+        <span class="arrow">→</span> Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ Footer ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 Ziyuan Wang</div>
+    <div class="footer-links">
+      <a href="#">Top</a>
+      <a href="#about">About</a>
+      <a href="#pattern">Pattern</a>
+      <a href="#products">Products</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  /* ── Scroll reveal: fade-in + stagger ── */
+  var fadeEls = document.querySelectorAll('.fade-in, .fade-stagger');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('fade-stagger')) {
+            entry.target.classList.add('in-view');
+          } else {
+            entry.target.classList.add('visible');
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+  } else {
+    fadeEls.forEach(function(el) {
+      el.classList.add('visible', 'in-view');
+    });
+  }
+
+
+
+  /* ── Header scroll: switch text color when hero passes ── */
+  var header = document.querySelector('header');
+  var teaser = document.querySelector('.teaser');
+  if (header && teaser) {
+    var onScroll = function() {
+      var hBottom = header.getBoundingClientRect().bottom;
+      var tBottom = teaser.getBoundingClientRect().bottom;
+      if (tBottom <= hBottom) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+    var navLinks = document.querySelectorAll('.nav-links a, .footer-links a[href^="#"]');
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({ top: target.offsetTop - 46, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
